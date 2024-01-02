@@ -239,7 +239,6 @@ namespace challengeN5.Tests
                            Description = "Client"
                        }
                    }
-
                });
 
             var unitOfWork = new UnitOfWorkBehavior<GetAllPermissionQuery, IEnumerable<Permission>>(_unitOfWorkMock.Object);
