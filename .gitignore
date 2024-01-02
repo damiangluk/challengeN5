@@ -1,0 +1,100 @@
+# Carpeta binaria
+**/bin/
+**/obj/
+**/bin
+**/obj
+/bin
+/obj
+/.vs
+
+# Visual Studio (auto-generado)
+*.user
+*.suo
+*.sln.docstates
+
+# Carpeta de caché de ReSharper
+_ReSharper*/
+
+# Carpeta de caché de Rider
+.idea/
+
+# Archivos temporales
+*.tmp
+*.log
+
+# Carpeta de salida de la solución
+[Tt]est[Rr]esult*/
+
+# Carpeta de cobertura de código
+[Oo]ut/
+
+# Archivos de configuración local (AppSettings.Local.json, etc.)
+*.local.*
+
+# Archivos de configuración de usuario de Visual Studio
+*.suo
+*.user
+*.userosscache
+*.suo
+*.suo
+*.suo
+
+# Carpeta de análisis de código de SonarQube
+.sonarqube/
+
+# Archivo de configuración de Rider
+.idea/
+
+# Archivos de configuración de Visual Studio
+.vsconfig
+*.vscode
+*.vscode
+*.vs
+
+# Carpeta de informes de cobertura de código de Visual Studio
+*.coveragexml
+
+# Archivos de configuración de xUnit
+*.xunit.runner.json
+xunit.runner.json
+!xunit.runner.json.template
+
+# Carpeta de informes de cobertura de código de xUnit
+/TestResults/
+
+# Archivo de informe de cobertura de código de xUnit
+/coverage.opencover.xml
+
+# Carpeta de informes de cobertura de código de Coverlet
+/coverage/
+
+# Archivos de configuración de JetBrains Rider
+.idea/
+*.sln.iml
+
+# Carpeta de publicación de GitHub Pages
+docs/
+
+# Archivos de caché de Rider
+.idea/
+*.suo
+*.user
+*.suo
+*.suo
+
+# Carpeta de nodos_modules
+node_modules/
+
+# Archivos de configuración de TypeScript
+tsconfig.json
+tsconfig.json
+
+# Archivos de configuración de JavaScript
+*.jsconfig.json
+
+# Carpeta de salida de TypeScript
+*.tsbuildinfo
+
+# Carpetas de caché y de resultados de análisis de SonarCloud
+.sonarqube/
+.sonar/
