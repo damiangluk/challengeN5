@@ -29,7 +29,16 @@ builder.Services.AddDbContext<ApplicationContext>(options =>
 builder.Services.AddScoped<IPermissionRepository, PermissionRepository>();
 builder.Services.AddScoped<IPermissionTypeRepository, PermissionTypeRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWorkRepository>();
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowLocalhost3000",
+        builder =>
+        {
+            builder.WithOrigins("http://localhost:3000")
+                   .AllowAnyHeader()
+                   .AllowAnyMethod();
+        });
+});
 
 var app = builder.Build();
 
@@ -49,6 +58,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseCors("AllowLocalhost3000");
 
 app.MapControllers();
 

@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace challengeN5.Models
 {
+    [Serializable]
     public class Permission : Identificable
     {
         #region constructors
@@ -43,6 +44,21 @@ namespace challengeN5.Models
                 EmployeeSurname = EmployeeSurname,
                 PermissionTypeId = PermissionTypeId,
                 PermissionType = PermissionType
+            };
+        }
+
+        public object FormatForFront()
+        {
+            return new
+            {
+                id = Id,
+                name = EmployeeName,
+                surname = EmployeeSurname,
+                date = PermissionDate,
+                permissionType = new {
+                    id = PermissionType.Id,
+                    text = PermissionType.Description
+                }
             };
         }
 

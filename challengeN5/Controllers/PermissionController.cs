@@ -16,7 +16,7 @@ namespace challengeN5.Controllers
         private readonly IMediator _mediator;
         private readonly string PERMISSIONS_INDEX = "permissions";
 
-        public PermissionController(IElasticsearchService elasticsearchService, IMediator mediator, IUnitOfWork unitOfWork)
+        public PermissionController(IElasticsearchService elasticsearchService, IMediator mediator)
         {
             _elasticsearchService = elasticsearchService;
             _mediator = mediator;
@@ -34,7 +34,7 @@ namespace challengeN5.Controllers
                 {
                     status = true,
                     validation = true,
-                    content = permissions,
+                    content = permissions.Select(p => p.FormatForFront()),
                 };
 
                 return JsonHelper.SerializeObject(result, 4);
@@ -48,7 +48,42 @@ namespace challengeN5.Controllers
                     validation = false,
                     content = new
                     {
-                        message = "An error ocurred while getting all the permission",
+                        message = "An error ocurred while getting all the permissions",
+                        exception = ex
+                    }
+                };
+
+                return JsonHelper.SerializeObject(result, 4);
+            }
+        }
+
+        [Route("get")]
+        [HttpGet]
+        public async Task<string> Get([FromQuery] int id)
+        {
+            try
+            {
+                var permission = await _mediator.Send(new GetByIdPermissionQuery(id));
+
+                object result = new
+                {
+                    status = true,
+                    validation = true,
+                    content = permission.FormatForFront(),
+                };
+
+                return JsonHelper.SerializeObject(result, 4);
+
+            }
+            catch (Exception ex)
+            {
+                object result = new
+                {
+                    status = true,
+                    validation = false,
+                    content = new
+                    {
+                        message = "An error ocurred while getting the permission",
                         exception = ex
                     }
                 };
@@ -59,7 +94,7 @@ namespace challengeN5.Controllers
 
         [Route("request-permission")]
         [HttpPost]
-        public async Task<string> RequestPermission(Permission permission)
+        public async Task<string> RequestPermission([FromBody] Permission permission)
         {
             try
             {
@@ -88,7 +123,7 @@ namespace challengeN5.Controllers
                 {
                     status = true,
                     validation = true,
-                    content = newPermission,
+                    content = newPermission.FormatForFront(),
                 };
 
                 return JsonHelper.SerializeObject(result, 4);
@@ -111,7 +146,7 @@ namespace challengeN5.Controllers
 
         [Route("modify-permission")]
         [HttpPost]
-        public async Task<string> ModifyPermission(Permission permission)
+        public async Task<string> ModifyPermission([FromBody] Permission permission)
         {
             try
             {
@@ -144,7 +179,7 @@ namespace challengeN5.Controllers
                 {
                     status = true,
                     validation = true,
-                    content = updatedPermission,
+                    content = updatedPermission.FormatForFront(),
                 };
 
                 return JsonHelper.SerializeObject(result, 4);
